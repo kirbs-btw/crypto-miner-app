@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
@@ -31,19 +31,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Timer timer;
 
-  void incrementCounter() {
-    print("hello");
-    for (var i = 0; i < 3; i++) {
-      sleep(const Duration(seconds:1));
-      setState(() {
-        _counter++;
-      });
-      print("hello sir");
-    }
+  void startTimer(){
+    print("ello");
+    int save = _counter;
+    timer = Timer.periodic(Duration(seconds: 1), (_){
+      print("hello im the timer");
+      if ((_counter - save)  >= 10){
+        timer.cancel();
+        print("timer is paused!");
+      }else{
+        setState(() => _counter++);
+      }
+    });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(widget.title),
+        title: Center(
+          child: Text('$_counter RIM'),
+        ),
       ),
       body: Center(
 
@@ -59,18 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: incrementCounter,
+        onPressed: startTimer,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
