@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       home: MyHomePage(),
     );
@@ -30,19 +30,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  double _counter = 0;
   Timer timer;
 
   void startTimer(){
     print("ello");
-    int save = _counter;
+    int cycle = 0;
     timer = Timer.periodic(Duration(seconds: 1), (_){
+      cycle++;
       print("hello im the timer");
-      if ((_counter - save)  >= 10){
+      if (cycle >= 10){
         timer.cancel();
         print("timer is paused!");
       }else{
-        setState(() => _counter++);
+        setState(() => _counter += 0.1);
       }
     });
   }
@@ -52,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-
         title: Center(
           child: Text('$_counter RIM'),
         ),
