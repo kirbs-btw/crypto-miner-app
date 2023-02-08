@@ -1,18 +1,15 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.pink,
       ),
       home: MyHomePage(),
@@ -43,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         timer.cancel();
         print("timer is paused!");
       }else{
-        setState(() => _counter += 0.1);
+        setState(() => _counter += 1);
       }
     });
   }
@@ -69,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: startTimer,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: Icon(Icons.gavel),
+      ),
     );
   }
 }
